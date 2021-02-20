@@ -5,14 +5,18 @@ import pygame
 import random
 from pygame.locals import *
 from random import randint
+from tkinter import *
+from tkinter import messagebox
 
-
+#隐藏tkinter主窗口
+rootTK = Tk()
+rootTK.withdraw()
 
 #定义一些窗体参数及加载字体文件
+SCREEN_WIDTH = win32api.GetSystemMetrics(win32con.SM_CXSCREEN)  #获得屏幕分辨率X轴
 # SCREEN_WIDTH = 900  # 窗体宽度
-SCREEN_WIDTH = win32api.GetSystemMetrics(win32con.SM_CXSCREEN) #获得屏幕分辨率X轴
+SCREEN_HEIGHT = win32api.GetSystemMetrics(win32con.SM_CYSCREEN)  #获得屏幕分辨率Y轴
 # SCREEN_HEIGHT = 600  # 窗体宽度
-SCREEN_HEIGHT = win32api.GetSystemMetrics(win32con.SM_CYSCREEN) #获得屏幕分辨率Y轴
 LOW_SPEED  = 4              # 字体移动最低速度
 HIGH_SPEED = 10             # 字体移动最快速度
 FONT_COLOR = (00,150,00)    # 字体颜色
@@ -61,6 +65,7 @@ class Word(pygame.sprite.Sprite) :
 #init the available modules
 pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT),pygame.FULLSCREEN)
+# screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
 pygame.display.set_caption("characterRain")
 clock = pygame.time.Clock()
 group = pygame.sprite.Group()
@@ -68,12 +73,18 @@ group_count = int(SCREEN_WIDTH / FONT_NOM)
 
 
 #mainloop
-while True :
+while True:
     time = clock.tick(FREQUENCE)
+
     for event in pygame.event.get() :
         if event.type == QUIT :
             pygame.quit()
             exit()
+        if event.type == pygame.KEYUP and event.key == pygame.K_ESCAPE:
+            msg_rtn = messagebox.askokcancel("Tips", 'Are you sure quit?')
+            if msg_rtn :
+                pygame.quit()
+                exit()
 
     screen.fill((0,0,0))
     for i in range(0,group_count) :
