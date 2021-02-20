@@ -3,9 +3,9 @@ import math
 import time
 import win32api,win32con
 
-win32api.GetSystemMetrics(win32con.SM_CXSCREEN)   #获得屏幕分辨率X轴
+win32api.GetSystemMetrics(win32con.SM_CXSCREEN) #获得屏幕分辨率X轴
 
-win32api.GetSystemMetrics(win32con.SM_CYSCREEN)   #获得屏幕分辨率Y轴
+win32api.GetSystemMetrics(win32con.SM_CYSCREEN) #获得屏幕分辨率Y轴
 
 inputnum = int(input("please input a num(which is greater than 500):"))
 

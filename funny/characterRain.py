@@ -14,7 +14,7 @@ SCREEN_HEIGHT = 600         # 窗体宽度
 LOW_SPEED  = 4              # 字体移动最低速度
 HIGH_SPEED = 10             # 字体移动最快速度
 FONT_COLOR = (00,150,00)    # 字体颜色
-FONT_SIZE = 15               # 字体尺寸
+FONT_SIZE = 9               # 字体尺寸
 FONT_NOM  = 20              # 显示字体数量  从0开始
 # FONT_NAME = "calibrii.ttf"  # 注意字体的文件名必须与真实文件完全相同（注意ttf的大小写），且文件名不能是中文
 FONT_NAME = "C:\Windows\Fonts\simsun.ttc"
@@ -22,11 +22,10 @@ FREQUENCE = 10              # 时间频度
 times = 0                   # 初始化时间
 
 #
-randomCharacter = '飞弹及辅导书分不开'
+randomCharacter = '飞雪连天射白鹿笑书神侠倚碧鸳'
 
 def randomDisplay():
-    d_index = randint(0, len(randomCharacter)-1)
-    return randomCharacter[d_index]
+    return randomCharacter[randint(0, len(randomCharacter)-1)]
 
 # 定义随机参数
 def randomspeed() :
@@ -36,7 +35,7 @@ def randomposition() :
 def randomoname() :
     return randint(0,100000)
 def randomvalue() :
-    return randint(0,100)              # this is your own display number range
+    return randint(0,1)              # this is your own display number range
 
 
 #class of sprite
@@ -46,8 +45,7 @@ class Word(pygame.sprite.Sprite) :
         # self.value = randomvalue()
         self.value = randomDisplay()
         self.font = pygame.font.Font(FONT_NAME,FONT_SIZE)
-        # self.image = self.font.render(str(self.value),True,FONT_COLOR)
-        self.image = self.font.render(self.value,True,FONT_COLOR)
+        self.image = self.font.render(str(self.value),True,FONT_COLOR)
         self.speed = randomspeed()
         self.rect = self.image.get_rect()
         self.rect.topleft = bornposition
